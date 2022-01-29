@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xsd file has the definition of the spring configurations -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   	
+   	<!-- DI via setter -->
+   	<!-- define multiple beans here -->
+   	<bean class="via_spring_xml_file.transfer_object.Hello" id="h1">
+   		<!-- here take the name of the instance var -->
+   		<property name="message" value="welcome to spring from bean1"></property>
+   	</bean>
+   	
+   	<bean class="via_spring_xml_file.transfer_object.Hello" id="h2">
+   		<property name="message" value="welcome to spring from bean2"></property>
+   	</bean>
+   	
+   	<bean class="via_spring_xml_file.transfer_object.Employee" id="e1">
+   		<property name="employeeId" value="1"></property>
+   		<property name="employeeName" value="Joel"></property>
+   	</bean>
+   	
+   	<!-- DI via constructor -->
+   	<bean class="via_spring_xml_file.transfer_object.Employee" id="e2">
+   		<constructor-arg name="employeeId" value="2"></constructor-arg>
+   		<constructor-arg name="employeeName" value="Hansli"></constructor-arg>
+   	</bean>
+
+</beans>
