@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xsd file has the definition of the spring configurations -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <!-- setter injection -->
+    <bean id="emp" class="spring_jdbc_hibernate.jdbc_template.employee2.Employee">
+   		<property name="id" value="1"></property>
+   		<property name="name" value="joel"></property>
+   	</bean>
+   	
+   	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+   		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+   		<property name="url" value="jdbc:mysql://localhost:3306/springdemo2?serverTimezone=Europe/Rome"></property>
+   		<property name="username" value="root"></property>
+   		<property name="password" value="dunpeal87$$"></property>
+   	</bean>
+   	
+   	<bean id="jdbctemp" class="org.springframework.jdbc.core.JdbcTemplate">
+   		<property name="dataSource" ref="ds"></property>
+   	</bean>
+   	
+   	<!-- constructor injection -->
+   	<bean id="crud" class="spring_jdbc_hibernate.jdbc_template.employee2.EmpCRUD">
+   		<constructor-arg name="temp" ref="jdbctemp"></constructor-arg>
+   	</bean>
+   	
+</beans>

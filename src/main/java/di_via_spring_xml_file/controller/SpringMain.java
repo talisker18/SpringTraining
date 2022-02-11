@@ -8,7 +8,7 @@ import di_via_spring_xml_file.transfer_object.Hello;
 
 public class SpringMain {
 	public static void main(String[] args) {
-		//access spring.xml file
+		//access spring.xml file from src/main/resources
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		
 		//getting instances via setter injection

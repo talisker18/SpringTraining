@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xsd file has the definition of the spring configurations -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   	
+   	<!-- check ok: 'org.apache.commons.dbcp2.BasicDataSource' implements DataSource -->
+   	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+   		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+   		<property name="url" value="jdbc:mysql://localhost:3306/trainee?serverTimezone=Europe/Rome"></property>
+   		<property name="username" value="root"></property>
+   		<property name="password" value="dunpeal87$$"></property>
+   	</bean>
+   	
+   	<!-- check ok: 'org.springframework.orm.hibernate5.LocalSessionFactoryBean' implements FactoryBean<SessionFactory>-->
+   	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="spring_jdbc_hibernate.using_session_factory_with_hibernate"/>
+        <property name="hibernateProperties">
+            <props>
+   				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+   			</props>
+        </property>
+    </bean>
+    
+    <!-- Transaction -->
+	<!--  <bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>-->
+    
+    <!-- <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>-->
+   	
+   	<bean id="dao" class="spring_jdbc_hibernate.using_session_factory_with_hibernate.TraineeDao">
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+
+</beans>
